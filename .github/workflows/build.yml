@@ -26,9 +26,10 @@ jobs:
 
       - name: Download SDK
         run: |
-          $sdk_link = "${{ secrets.SDK_LINK }}"
-          Invoke-WebRequest -Uri $sdk_link -OutFile sdk.zip
-          Expand-Archive -Path sdk.zip -DestinationPath CppSDK
+            $sdk_link = "https://drive.usercontent.google.com/download?id=1RsjLS5CUi5DJctWNi6T7Bo88pJurpik6&authuser=0&confirm=t&uuid=90ee5b05-60f8-485a-9381-2fdab22fa64f&at=ALoNOgmU9X45PBhZrO7xtZEUsaK0%3A1747208924976"
+            $output = "sdk.zip"
+            Invoke-WebRequest -Uri $sdk_link -OutFile $output -MaximumRedirection 0
+            Expand-Archive -Path sdk.zip -DestinationPath CppSDK -Force
 
       - name: Set up MSVC environment
         uses: microsoft/setup-msbuild@v2
